@@ -21,13 +21,21 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
 	public final ResponseEntity<ExceptionResponse> handleAllExceptons(Exception ex, WebRequest request){
 		ExceptionResponse exceptionResponse = new ExceptionResponse(
 				new Date(),ex.getMessage(),request.getDescription(false));
-		return new ResponseEntity<>(exceptionResponse, HttpStatus.INTERNAL_SERVER_ERROR);		
+		return new ResponseEntity<>(exceptionResponse, HttpStatus.NOT_FOUND);// INTERNAL_SERVER_ERROR);		
 	}
 	
-	@ExceptionHandler(UnsupportedMathOperationException.class)
+	//Antes de inserir BD utilizava o código abaixo
+	/*@ExceptionHandler(UnsupportedMathOperationException.class)
 	public final ResponseEntity<ExceptionResponse> handleBadRequestExceptions(Exception ex, WebRequest request){
 		ExceptionResponse exceptionResponse = new ExceptionResponse(
 				new Date(),ex.getMessage(),request.getDescription(false));
 		return new ResponseEntity<>(exceptionResponse, HttpStatus.BAD_REQUEST);		
+	}*/
+	
+	@ExceptionHandler(UnsupportedMathOperationException.class)
+	public final ResponseEntity<ExceptionResponse> handleNotFoundExceptions(Exception ex, WebRequest request){
+		ExceptionResponse exceptionResponse = new ExceptionResponse(
+				new Date(),ex.getMessage(),request.getDescription(false));
+		return new ResponseEntity<>(exceptionResponse, HttpStatus.NOT_FOUND);		
 	}
 }
