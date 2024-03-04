@@ -21,26 +21,28 @@ import br.com.erudio.services.PersonServices;
 import br.com.erudio.util.MediaType;
 
 @RestController
-@RequestMapping("/api/person/v1")
+@RequestMapping("/api/person")
 public class PersonController {
 	
 	@Autowired
 	private PersonServices service;
 	
 	@GetMapping(
+			value = "/v1", 
 			produces = {MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML})
 	public List<PersonVO> findAll() {
 		return service.findAll();
 	}	
 	
 	@GetMapping(
-			value="/{id}",
+			value="/v1/{id}",
 			produces = {MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML})
 	public PersonVO findById(@PathVariable(value = "id") Long id)	{
 		return service.findById(id);
 	}
 	
 	@PostMapping(
+			value = "/v1", 
 			consumes = {MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML},
 			produces = {MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML})
 	public ResponseEntity<PersonVO> create(@RequestBody PersonVO person)
@@ -60,6 +62,7 @@ public class PersonController {
 	}	
 	
 	@PutMapping(
+			value = "/v1",
 			consumes = {MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML},
 			produces = {MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML})
 	public PersonVO update(@RequestBody PersonVO person)
@@ -67,7 +70,8 @@ public class PersonController {
 		return service.update(person);
 	}
 
-	@DeleteMapping(value="/{id}")
+	@DeleteMapping(
+			value="v1/{id}")
 	public ResponseEntity<?> delete(@PathVariable(value = "id") Long id) {
 		service.delete(id);
 		return ResponseEntity.noContent().build();

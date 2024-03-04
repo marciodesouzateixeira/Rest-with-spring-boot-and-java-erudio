@@ -3,16 +3,20 @@ package br.com.erudio.data.vo.v1;
 import java.io.Serializable;
 import java.util.Objects;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.hateoas.RepresentationModel;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+//import com.github.dozermapper.core.Mapping;
 
 @JsonPropertyOrder({"id", "address", "first_Name", "last_Name",  "gender"})
-public class PersonVO implements Serializable {
+public class PersonVO extends RepresentationModel<PersonVO> implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
-	private Long id;
+	@JsonProperty("id")
+	//@Mapping("id")
+	private Long key;
 	
 	@JsonProperty("first_Name")
 	private String firstName;
@@ -27,12 +31,12 @@ public class PersonVO implements Serializable {
 	public PersonVO() {
 	}
 
-	public Long getId() {
-		return id;
+	public Long getKey() {
+		return key;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setKey(Long key) {
+		this.key = key;
 	}
 	
 	public String getFirstName() {
@@ -69,7 +73,7 @@ public class PersonVO implements Serializable {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(firstName, gender, id, lastName, address);
+		return Objects.hash(firstName, gender, key, lastName, address);
 	}
 
 	@Override
@@ -82,7 +86,7 @@ public class PersonVO implements Serializable {
 			return false;
 		PersonVO other = (PersonVO) obj;
 		return Objects.equals(firstName, other.firstName) && Objects.equals(gender, other.gender)
-				&& Objects.equals(id, other.id) && Objects.equals(lastName, other.lastName)
+				&& Objects.equals(key, other.key) && Objects.equals(lastName, other.lastName)
 				&& Objects.equals(address, other.address);
 	}
 	
