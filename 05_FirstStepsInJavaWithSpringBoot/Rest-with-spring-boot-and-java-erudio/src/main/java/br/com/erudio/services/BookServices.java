@@ -12,13 +12,11 @@ import org.springframework.stereotype.Service;
 import br.com.erudio.controllers.BookController;
 import br.com.erudio.controllers.PersonController;
 import br.com.erudio.data.vo.v1.BookVO;
-import br.com.erudio.data.vo.v1.PersonVO;
 import br.com.erudio.exceptions.RequiredObjectIsNullException;
 import br.com.erudio.exceptions.ResourceNotFoundException;
 import br.com.erudio.mapper.DozerMapper;
 import br.com.erudio.mapper.custom.BookMapper;
 import br.com.erudio.model.Book;
-import br.com.erudio.model.Person;
 import br.com.erudio.repositories.BookRepository;
 
 @Service
@@ -46,9 +44,9 @@ public class BookServices {
 			.orElseThrow(() -> new ResourceNotFoundException("No records found for this Id") );
 		
 		var vo = DozerMapper.parseObject(entity, BookVO.class);
-		vo.add(linkTo(methodOn(BookController.class).findById(id)).withSelfRel());
+		//vo.add(linkTo(methodOn(BookController.class).findById(id)).withSelfRel());
 		vo.add(linkTo(methodOn(BookController.class).findAll()).withRel("collection"));
-		vo.add(linkTo(methodOn(BookController.class).update(vo)).withRel("update-book"));
+		//vo.add(linkTo(methodOn(BookController.class).update(vo)).withRel("update-book"));
 		
 		return vo;
 	}
@@ -60,7 +58,7 @@ public class BookServices {
 		var entity = DozerMapper.parseObject(book, Book.class);
 		var vo = DozerMapper.parseObject(repository.save(entity), BookVO.class);
 
-		vo.add(linkTo(methodOn(PersonController.class).findById(vo.getKey())).withSelfRel());
+		vo.add(linkTo(methodOn(BookController.class).findById(vo.getKey())).withSelfRel());
 		return vo;
 	}
 	
@@ -76,7 +74,7 @@ public class BookServices {
 		entity.setLaunchDate(book.getLaunchDate());
 		
 		var vo = DozerMapper.parseObject(repository.save(entity), BookVO.class);
-		vo.add(linkTo(methodOn(PersonController.class).findById(vo.getKey())).withSelfRel());
+		vo.add(linkTo(methodOn(BookController.class).findById(vo.getKey())).withSelfRel());
 		return vo;		
 	}
 	
