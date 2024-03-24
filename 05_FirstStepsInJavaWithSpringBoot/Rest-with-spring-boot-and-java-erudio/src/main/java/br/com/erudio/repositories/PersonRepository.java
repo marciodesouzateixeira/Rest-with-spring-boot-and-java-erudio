@@ -4,5 +4,4 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import br.com.erudio.model.Person;
 
-//@Repository
 public interface PersonRepository extends JpaRepository<Person, Long>{}

@@ -18,12 +18,14 @@ import br.com.erudio.exceptions.UnsupportedMathOperationException;
 @RestController
 public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
 
+
 	@ExceptionHandler(Exception.class)
 	public final ResponseEntity<ExceptionResponse> handleAllExceptons(Exception ex, WebRequest request){
 		ExceptionResponse exceptionResponse = new ExceptionResponse(
 				new Date(),ex.getMessage(),request.getDescription(false));
 		return new ResponseEntity<>(exceptionResponse, HttpStatus.NOT_FOUND);// INTERNAL_SERVER_ERROR);		
 	}
+
 	
 	//Antes de inserir BD utilizava o código abaixo
 	/*@ExceptionHandler(UnsupportedMathOperationException.class)
@@ -32,6 +34,7 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
 				new Date(),ex.getMessage(),request.getDescription(false));
 		return new ResponseEntity<>(exceptionResponse, HttpStatus.BAD_REQUEST);		
 	}*/
+	
 	
 	@ExceptionHandler(UnsupportedMathOperationException.class)
 	public final ResponseEntity<ExceptionResponse> handleNotFoundExceptions(Exception ex, WebRequest request){
@@ -46,4 +49,5 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
 				new Date(),ex.getMessage(),request.getDescription(false));
 		return new ResponseEntity<>(exceptionResponse, HttpStatus.BAD_REQUEST);		
 	}
+
 }
