@@ -43,7 +43,7 @@ public class BookController {
 			@ApiResponse(description = "Success", responseCode = "200", 
 				content= {
 					@Content(
-							mediaType = "applcation/json",
+							mediaType = "application/json",
 							array = @ArraySchema(schema = @Schema(implementation = PersonVO.class))
 					)
 				}

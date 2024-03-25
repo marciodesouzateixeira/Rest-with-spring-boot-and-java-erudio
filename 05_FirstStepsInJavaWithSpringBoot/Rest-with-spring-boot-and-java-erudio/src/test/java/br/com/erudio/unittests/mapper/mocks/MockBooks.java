@@ -1,10 +1,8 @@
 package br.com.erudio.unittests.mapper.mocks;
 
-import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.concurrent.ThreadLocalRandom;
 
 import br.com.erudio.data.vo.v1.BookVO;
 import br.com.erudio.model.Book;

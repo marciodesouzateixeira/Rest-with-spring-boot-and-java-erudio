@@ -8,10 +8,6 @@ import org.springframework.hateoas.RepresentationModel;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-//import com.github.dozermapper.core.Mapping;
-
-import br.com.erudio.data.vo.v1.PersonVO;
-
 public class PersonVOV2 extends RepresentationModel<PersonVOV2> implements Serializable {
 
 	private static final long serialVersionUID = 1L;
