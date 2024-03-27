@@ -11,11 +11,11 @@ import io.swagger.v3.oas.models.info.License;
 public class OpenAPIConfig {
 	
 	@Bean
-	public OpenAPI customOpenAPI() {
+	OpenAPI customOpenAPI() {
 		return new OpenAPI()
 			.info(
 				new Info()
-					.title("RESTful API With Java")
+					.title("RESTful API With Java Java 21 and Spring Boot 3")
 					.version("v1")
 					.description("Some description detailed.")
 					.termsOfService("https://pub.erudio.com.br/termsofservice")
