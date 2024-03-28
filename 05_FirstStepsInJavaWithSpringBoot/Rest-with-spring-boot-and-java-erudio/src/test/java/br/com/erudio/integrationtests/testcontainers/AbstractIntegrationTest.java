@@ -16,20 +16,13 @@ public class AbstractIntegrationTest {
 
 	static class Initializer implements ApplicationContextInitializer<ConfigurableApplicationContext>{
 		static MySQLContainer<?> mysql = new MySQLContainer<>("mysql:8.0.36");
-		//static MySQLContainer<?> mysql = new MySQLContainer<>("mysql:8.0.0");
 		
 		private static void startContainers() {
 			Startables.deepStart(Stream.of(mysql)).join();
 		}
 		
 		private static Map<String, String> createConnectionConfiguration() {
-			
-			/*return Map.of(
-				"spring.datasource.url", "jdbc:mysql://localhost:3306/rest_with_spring_boot?useTimezone=true&serverTimezone=UTC&useSSL=false", // mysql.getJdbcUrl(),
-				"spring.datasource.username", "root", //mysql.getUsername(),
-				"spring.datasource.password", "admin123" //mysql.getPassword()
-					);*/
-			
+					
 			return Map.of(
 					"spring.datasource.url", mysql.getJdbcUrl() + "?useSSL=false",
 					"spring.datasource.username", mysql.getUsername(),
