@@ -1,4 +1,4 @@
-package br.com.erudio.security.Jwt;
+package br.com.erudio.security.jwt;
 
 import java.util.Base64;
 import java.util.Date;
